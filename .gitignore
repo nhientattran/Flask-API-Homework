@@ -2,3 +2,4 @@ nhien_env
 migrations
 __pycache__
 .env
+TFT-database.sql

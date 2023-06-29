@@ -108,3 +108,23 @@
 }
 
 /* End Footer Section */
+
+/* Profile Section */
+.hero-section{
+    height: 100vh;
+    background-image: url(../images/TFT_background_2.jpg);
+    background-size: cover;
+    background-position: 35% 50%;
+    -webkit-clip-path: polygon(0 0, 100% 0, 100% 80vh, 0 100%);
+    clip-path: polygon(0 0, 100% 0, 100% 80vh, 0 100%);
+    position: relative;
+}
+.header-text{
+    display: flex;
+    justify-content: center;
+    padding-top: 2%;
+    left: 20rem;
+    top: 10rem;
+    color: black;
+    font-size: 50px;
+}

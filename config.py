@@ -1,6 +1,12 @@
 import os
+from dotenv import load_dotenv
 
 basedir = os.path.abspath(os.path.dirname(__file__))
+
+# Give access to the project in ANY operation system we find ourselves in
+# Allow outside files/folders to be added to the project from the base directory
+
+load_dotenv(os.path.join(basedir, '.env'))
 
 class Config():
     FLASK_APP = os.environ.get('FLASK_APP')
