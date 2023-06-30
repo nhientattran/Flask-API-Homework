@@ -41,8 +41,8 @@ class JSONEncoder(json.JSONEncoder):
             return str(obj)
         return json.JSONEncoder(JSONEncoder, self).default(obj)
     
-def champion_info_generator():
-    url = "https://league-of-legends-champions.p.rapidapi.com/champions/en-us/teemo"
+def champion_info_generator(name):
+    url = f"https://league-of-legends-champions.p.rapidapi.com/champions/en-us/{name}"
 
     headers = {
         "X-RapidAPI-Key": "4150364e67mshd14a8c1aa2795d4p10d4c4jsnb57e2361fc4d",

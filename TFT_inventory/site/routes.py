@@ -28,7 +28,7 @@ def profile():
             if championform.champion_info.data:
                 random_info = championform.champion_info.data
             else:
-                random_info = champion_info_generator()
+                random_info = champion_info_generator(name)
             user_token = current_user.token
 
             champion = Champion(name, description, skill, skill_description, cost, traits, series, random_info, user_token)
