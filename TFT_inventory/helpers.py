@@ -40,3 +40,17 @@ class JSONEncoder(json.JSONEncoder):
         if isinstance(obj, decimal.Decimal):
             return str(obj)
         return json.JSONEncoder(JSONEncoder, self).default(obj)
+    
+def champion_info_generator():
+    url = "https://league-of-legends-champions.p.rapidapi.com/champions/en-us/teemo"
+
+    headers = {
+        "X-RapidAPI-Key": "4150364e67mshd14a8c1aa2795d4p10d4c4jsnb57e2361fc4d",
+        "X-RapidAPI-Host": "league-of-legends-champions.p.rapidapi.com"
+    }
+
+    response = requests.get(url, headers=headers)
+
+    data = response.json()
+
+    return data['champion'][0]['lore']

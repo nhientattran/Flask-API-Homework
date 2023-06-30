@@ -32,7 +32,7 @@ class User(db.Model, UserMixin):
     username = db.Column(db.String, nullable = False)
     token = db.Column(db.String, default = '', unique = True)
     date_created = db.Column(db.DateTime, nullable = False, default = datetime.utcnow)
-    # Create relationship between User table and TFT table
+    champion = db.relationship('Champion', backref = 'owner', lazy = True)
 
     def __init__(self, email, username, password, first_name = '', last_name = ''):
         self.id = self.set_id()
@@ -55,18 +55,19 @@ class User(db.Model, UserMixin):
     def __repr__(self):
         return f"User {self.email} has been added to our Database!"
 
-class Champion(db.Model, UserMixin):
+class Champion(db.Model):
     id = db.Column(db.String, primary_key = True)
     name = db.Column(db.String(150))
-    description = db.Column(db.String(200), nullable = True)
+    description = db.Column(db.String(1200), nullable = True)
     skill = db.Column(db.String(200), nullable = False)
-    skill_description = db.Column(db.String(200), nullable = False)
+    skill_description = db.Column(db.String(5000), nullable = False)
     cost = db.Column(db.Numeric(precision=10, scale=2))
     traits = db.Column(db.String(150), nullable=False)
     series = db.Column(db.String(150))
+    random_info = db.Column(db.String(5000), nullable=True)
     user_token = db.Column(db.String, db.ForeignKey('user.token'), nullable = False)
 
-    def __init__(self, name, description, skill, skill_description, cost, traits, series, user_token):
+    def __init__(self, name, description, skill, skill_description, cost, traits, series, random_info, user_token):
         self.id = self.set_id()
         self.name = name
         self.description = description
@@ -75,6 +76,7 @@ class Champion(db.Model, UserMixin):
         self.cost = cost
         self.traits = traits
         self.series = series
+        self.random_info = random_info
         self.user_token = user_token
 
     def set_id(self):
@@ -85,7 +87,7 @@ class Champion(db.Model, UserMixin):
 
 class ChampionSchema(ma.Schema):
     class Meta:
-        fields = ['id','name','description','skill','skill_description','cost','traits','series']
+        fields = ['id','name','description','skill','skill_description','cost','traits','series','random_info']
 
 champion_schema = ChampionSchema()
 champions_schema = ChampionSchema(many = True)

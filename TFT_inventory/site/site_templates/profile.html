@@ -18,6 +18,14 @@
 
 <header class="hero-section">
     <h3 class="header-text">Welcome to TFT Preset! {{ current_user.username }}</h3>
+    <main class="container champion_form">
+        <div class="row">
+            <aside class="col-12 col-md-6">
+                <h2>Insert a Champion!</h2>
+                {% include 'championform.html' %}
+            </aside>
+        </div>
+    </main>
 </header>
 
 <div class="container">
@@ -26,6 +34,26 @@
         <li class="list-group-item">Email: {{ current_user.email }}</li>
         <li class="list-group-item">Token: {{ current_user.token }}</li>
     </ul>
+    <div class="row">
+        {% for champion in champions %}
+        <div class="card" style="width: 18rem;">
+            <img src="../../static/images/TFT_champion.png" class="card-img-top" alt="TFT party">
+            <div class="card-body">
+                <h5 class="card-title">{{ champion.name }}</h5>
+                <p class="card-text">{{ champion.description }}</p>
+            </div>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">{{ champion.cost }}</li>
+                <li class="list-group-item">{{ champion.traits }}</li>
+                <li class="list-group-item">{{ champion.champion_info }}</li>
+            </ul>
+            <div class="card-body">
+                <a href="#" class="card-link">Update Champion</a>
+                <a href="#" class="card-link">Delete Champion</a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
 </div>
 
 

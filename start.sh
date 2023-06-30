@@ -1,0 +1,1 @@
+gunicorn 'TFT_inventory:app'

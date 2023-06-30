@@ -1,0 +1,39 @@
+<form method="POST">
+    {{ form.hidden_tag() }}
+    <div class="form-group">
+        <fieldset class="name-field">
+            {{ form.name.label }}
+            {{ form.name(class='form-control', placeholder='Name')}}
+        </fieldset>
+        <fieldset class="description-field">
+            {{ form.description.label }}
+            {{ form.description(class='form-control', placeholder='Description')}}
+        </fieldset>
+        <fieldset class="skill-field">
+            {{ form.skill.label }}
+            {{ form.skill(class='form-control', placeholder='Skill')}}
+        </fieldset>
+        <fieldset class="skilldescription-field">
+            {{ form.skill_description.label }}
+            {{ form.skill_description(class='form-control', placeholder='Skill Description')}}
+        </fieldset>
+        <fieldset class="cost-field">
+            {{ form.cost.label }}
+            {{ form.cost(class='form-control', placeholder='Cost')}}
+        </fieldset>
+        <fieldset class="traits-field">
+            {{ form.traits.label }}
+            {{ form.traits(class='form-control', placeholder='Traits')}}
+        </fieldset>
+        <fieldset class="series-field">
+            {{ form.series.label }}
+            {{ form.series(class='form-control', placeholder='Series')}}
+        </fieldset>
+        <fieldset class="info-field">
+            {{ form.champion_info.label }}
+            {{ form.champion_info(class='form-control', placeholder='Champion Info')}}
+        </fieldset>
+
+        {{ form.submit_button(class = 'btn btn-primary btn-block mt-2')}}
+    </div>
+</form>

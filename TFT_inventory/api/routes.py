@@ -1,5 +1,5 @@
 from flask import Blueprint, request, jsonify
-from TFT_inventory.helpers import token_required
+from TFT_inventory.helpers import token_required, champion_info_generator
 from TFT_inventory.models import db, Champion, champion_schema, champions_schema
 
 api = Blueprint('api', __name__, url_prefix='/api')
@@ -19,11 +19,12 @@ def create_champion(our_user):
     cost = request.json['cost']
     traits = request.json['traits']
     series = request.json['series']
+    random_info = champion_info_generator()
     user_token = our_user.token
 
     print(f"User Token: {our_user.token}")
 
-    champion = Champion(name, description, skill, skill_description, cost, traits, series, user_token)
+    champion = Champion(name, description, skill, skill_description, cost, traits, series, random_info, user_token)
     
     db.session.add(champion)
     db.session.commit()
@@ -65,6 +66,7 @@ def update_champion(our_user, id):
     champion.cost = request.json['cost'] 
     champion.traits = request.json['traits']
     champion.series = request.json['series']
+    champion.champion_info = champion_info_generator()
     champion.user_token = our_user.token
 
     db.session.commit()
